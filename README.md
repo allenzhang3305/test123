@@ -1,13 +1,16 @@
 # Product Combo Guide Manager
 
-Tasks:
+## Setup
 
-1. csv to context
-2. js to context
-5. context to visualize
-3. context to csv
-4. context to js
+1. You need a `.env.local`
+2. Install packages
 
+```sh
+pnpm i
+```
 
-# setup
-1. copy .env.example to .env.local
+3. (deployment only) Build
+
+```sh
+pnpm run build
+```
