@@ -1,0 +1,212 @@
+---
+description: React best practices (React 19)
+globs: src/**/*.tsx,src/**/*.jsx
+alwaysApply: false
+---
+# React Best Practices
+
+## Component Definition
+Define components and hooks at module level, never inside other components:
+
+```tsx
+// ✅ Module level
+function Component({ defaultValue }) { ... }
+function useData(endpoint) { ... }
+
+// ❌ Never define inside components or factories
+function Parent() {
+  function Child() { ... } // Bad
+  return <Child />
+}
+```
+
+## Hooks Rules
+- Call hooks only at top level (not in conditions, loops, callbacks, or after returns)
+- Use `use` prefix for custom hooks that call other hooks
+
+```tsx
+// ❌ Invalid patterns
+if (isLoggedIn) { const [user] = useState(null) }
+if (!data) return <Loading />; const [processed] = useState(data)
+
+// ✅ Valid
+const [user, setUser] = useState(null)
+if (!isLoggedIn) return <Login />
+```
+
+## State Management
+
+### Derive values instead of syncing state
+```tsx
+// ✅ Derive from existing state
+const [firstName, setFirstName] = useState('')
+const [lastName, setLastName] = useState('')
+const fullName = firstName + ' ' + lastName // Derived, not stored
+
+// ❌ Redundant state that needs syncing
+const [fullName, setFullName] = useState('') // Don't do this
+```
+
+### Lift state up for shared state
+```tsx
+// ✅ Parent owns shared state
+function Accordion() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  return (
+    <>
+      <Panel isActive={activeIndex === 0} onShow={() => setActiveIndex(0)} />
+      <Panel isActive={activeIndex === 1} onShow={() => setActiveIndex(1)} />
+    </>
+  )
+}
+```
+
+### Use reducer for complex state
+```tsx
+const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
+
+dispatch({ type: 'added', id: nextId++, text })
+dispatch({ type: 'changed', task })
+dispatch({ type: 'deleted', id: taskId })
+```
+
+## useEffect Best Practices
+
+### Always provide cleanup for subscriptions/connections
+```tsx
+useEffect(() => {
+  const connection = createConnection(serverUrl, roomId)
+  connection.connect()
+  return () => connection.disconnect() // ✅ Cleanup
+}, [serverUrl, roomId])
+```
+
+### Handle race conditions in data fetching
+```tsx
+useEffect(() => {
+  let ignore = false
+  async function fetchData() {
+    const json = await fetchTodos(userId)
+    if (!ignore) setTodos(json) // Only update if not stale
+  }
+  fetchData()
+  return () => { ignore = true }
+}, [userId])
+```
+
+### Use updater function to avoid dependencies
+```tsx
+useEffect(() => {
+  const id = setInterval(() => {
+    setCount(c => c + 1) // ✅ Updater, no count dependency needed
+  }, 1000)
+  return () => clearInterval(id)
+}, []) // Empty deps
+```
+
+## Performance
+
+### Memoize with useMemo/useCallback
+```tsx
+// Memoize expensive calculations
+const cachedValue = useMemo(() => expensiveCalc(data), [data])
+
+// Memoize callbacks in custom hooks
+function useRouter() {
+  const { dispatch } = useContext(RouterContext)
+  const navigate = useCallback((url) => dispatch({ type: 'navigate', url }), [dispatch])
+  return { navigate }
+}
+```
+
+### Use memo for expensive components
+```tsx
+const MemoComponent = memo(function Component({ record }) {
+  // Only re-renders when record changes (shallow compare)
+})
+```
+
+### Explicit object return in useMemo
+```tsx
+const options = useMemo(() => {
+  return { matchMode: 'whole-word', text } // ✅ Explicit return
+}, [text])
+```
+
+## Refs
+```tsx
+// ✅ Read refs in effects/handlers, not during render
+const ref = useRef(null)
+
+useEffect(() => {
+  if (ref.current) console.log(ref.current.offsetWidth)
+})
+
+// ✅ Lazy initialization
+if (ref.current === null) {
+  ref.current = expensiveComputation()
+}
+```
+
+## The `use` API (React 19)
+Read Promises and Context values during render. Unlike hooks, `use` CAN be called in conditionals/loops.
+
+### Reading Promises with Suspense
+```tsx
+import { use, Suspense } from 'react'
+
+function Comments({ commentsPromise }) {
+  const comments = use(commentsPromise) // Suspends until resolved
+  return comments.map(c => <p key={c.id}>{c.text}</p>)
+}
+
+function Page({ commentsPromise }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Comments commentsPromise={commentsPromise} />
+    </Suspense>
+  )
+}
+```
+
+### Reading Context conditionally
+```tsx
+import { use } from 'react'
+import ThemeContext from './ThemeContext'
+
+function Heading({ children }) {
+  if (children == null) return null
+  
+  // ✅ Works after early return (useContext would fail here)
+  const theme = use(ThemeContext)
+  return <h1 style={{ color: theme.color }}>{children}</h1>
+}
+```
+
+### Error handling with ErrorBoundary
+```tsx
+<ErrorBoundary fallback={<div>Failed to load</div>}>
+  <Suspense fallback={<div>Loading...</div>}>
+    <DataComponent promise={fetchData()} />
+  </Suspense>
+</ErrorBoundary>
+```
+
+### `use` Rules
+- ✅ Can be called in conditionals and loops (unlike hooks)
+- ✅ Must be called in a Component or Hook function
+- ✅ Pass Promises from Server → Client Components (stable across re-renders)
+- ❌ Don't create Promises in Client Components (recreated every render)
+- ❌ Don't call in try-catch blocks (use ErrorBoundary instead)
+
+## Key Rules Summary
+- Define components/hooks at module level
+- Don't pass hooks as props
+- Call hooks unconditionally at top level (except `use`)
+- Derive state when possible
+- Lift shared state to common parent
+- Always cleanup subscriptions in useEffect
+- Use ignore flag for async data fetching
+- Memoize functions returned from custom hooks
+- Use `memo` for pure components with expensive renders
+- Use `use` for reading Promises/Context conditionally with Suspense

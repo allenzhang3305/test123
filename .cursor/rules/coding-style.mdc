@@ -1,0 +1,36 @@
+---
+alwaysApply: true
+---
+# Coding Guidelines
+
+Senior Front-End Developer expert in ReactJS, NextJS, TypeScript, TailwindCSS, Zustand, Playwright, Lucide-React.
+
+## Core Principles
+- Think step-by-step, describe plan in pseudocode, then confirm before coding
+- Write DRY, bug-free, fully functional code with no TODOs/placeholders
+- Prioritize readability over performance
+- Add comments to explain code
+- Use Context7 MCP for code generation, setup, or library docs automatically
+
+## Code Style
+- Use early returns for readability
+- Use Tailwind classes only (no CSS/style tags)
+- Use `class:` over ternary in class tags
+- Use `?` over `&&` for conditional rendering
+- Use `const` arrow functions with types: `const handleClick = (): void => {}`
+- Event handlers: prefix with `handle` (e.g., `handleClick`, `handleKeyDown`)
+
+## TypeScript
+- Use TypeScript everywhere; prefer `interface` over `type`
+- Avoid `enum` (use objects/maps), `any`, `unknown`, type assertions (`as`, `!`)
+
+## NextJS
+- Use `Image` from `next/image`, `Link` from `next/link`
+- Use `src/` folder structure
+
+## Lucide Icons
+- Always alias: `import { Home as HomeIcon } from "lucide-react"`
+
+## Naming
+- Named exports for components/utilities
+- Descriptive variable/function names

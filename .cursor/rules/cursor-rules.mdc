@@ -1,0 +1,25 @@
+---
+description: How to add or edit Cursor rules
+globs: 
+alwaysApply: false
+---
+# Cursor Rules
+
+## Location
+Place rules in `PROJECT_ROOT/.cursor/rules/` with `.mdc` extension.
+
+## File Structure
+```
+---
+description: Short description
+globs: optional/path/**/*
+alwaysApply: false
+---
+# Rule Title
+
+Content with markdown and code examples.
+```
+
+## Naming
+- Use kebab-case: `my-rule-name.mdc`
+- Descriptive of rule's purpose

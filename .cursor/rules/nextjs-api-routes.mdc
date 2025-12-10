@@ -1,0 +1,63 @@
+---
+description: Next.js API Route Handlers best practices
+globs: **/api/**/*.ts,**/route.ts
+alwaysApply: false
+---
+# Next.js Route Handlers
+
+Use Route Handlers (`route.ts`) in `app` directory, not Pages Router API routes.
+
+## Structure
+```
+src/app/api/
+  users/
+    route.ts              # GET, POST /api/users
+    [id]/route.ts         # GET, PUT, DELETE /api/users/[id]
+```
+
+## HTTP Methods
+Export named async functions per HTTP method:
+
+```typescript
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function GET(request: NextRequest) {
+  return NextResponse.json({ data: [] })
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+    // Validate with zod, then process
+    return NextResponse.json({ success: true, data: body }, { status: 201 })
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed' }, { status: 500 })
+  }
+}
+```
+
+## Dynamic Routes
+```typescript
+interface RouteContext {
+  params: { id: string }
+}
+
+export async function GET(request: NextRequest, { params }: RouteContext) {
+  const { id } = params
+  if (!id) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 })
+  
+  const item = await getById(id)
+  if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  
+  return NextResponse.json({ data: item })
+}
+```
+
+## Key Rules
+- Use `NextRequest`/`NextResponse` (not raw Request/Response)
+- Always wrap in try-catch with appropriate status codes
+- Type request body and response interfaces
+- Validate input with Zod before processing
+- Check auth: `request.headers.get('authorization')` or `request.cookies.get('token')`
+- Set caching: `export const dynamic = 'force-dynamic'` or `export const revalidate = 3600`
+- Never expose sensitive data (stack traces, secrets) in error responses

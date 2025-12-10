@@ -1,0 +1,99 @@
+---
+description: UI/UX with TailwindCSS, DaisyUI, Lucide React
+globs: src/**/*.tsx
+alwaysApply: false
+---
+# UI/UX Guidelines
+
+## Component Library: DaisyUI
+Use DaisyUI components for consistent, accessible UI elements. DaisyUI adds component classes to Tailwind CSS.
+
+```tsx
+// Buttons: btn class with variants (btn-primary, btn-secondary, btn-outline, btn-ghost)
+<button className="btn btn-primary">Button</button>
+
+// Cards: card class
+<div className="card bg-base-100 shadow-xl">
+  <div className="card-body">
+    <h2 className="card-title">Title</h2>
+    <p>Content</p>
+  </div>
+</div>
+
+// Forms: input, textarea, select, checkbox, radio classes
+<input type="text" className="input input-bordered w-full max-w-xs" />
+
+// Alerts: alert class
+<div role="alert" className="alert alert-info">
+  <span>New message arrived.</span>
+</div>
+
+// Tables: table class
+<div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr><th>Name</th><th>Job</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cy Ganderton</td><td>Quality Control Specialist</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
+## Theming
+Use DaisyUI themes and utility classes. Set the theme in your HTML tag or config.
+
+```tsx
+// Good: Use DaisyUI semantic colors
+<div className="bg-base-100 text-base-content border-base-300">
+  <button className="btn btn-primary">
+    Primary Action
+  </button>
+</div>
+```
+
+DaisyUI automatically handles dark mode based on the selected theme (e.g., `light`, `dark`, `cupcake`, `dracula`).
+
+## Lucide Icons
+```tsx
+import { Home as HomeIcon, Settings as SettingsIcon } from "lucide-react"
+
+// Consistent sizing
+<HomeIcon size={24} className="text-base-content" />
+
+// Icon-only buttons (Square button)
+<button className="btn btn-square btn-ghost">
+  <CloseIcon size={20} />
+  <span className="sr-only">Close</span>
+</button>
+```
+
+## Responsive Design
+Mobile-first with breakpoints (sm, md, lg, xl):
+```tsx
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div className="p-4 md:p-6 lg:p-8">
+// Responsive button size
+<button className="btn btn-sm md:btn-md">Click me</button>
+```
+
+## Loading States
+```tsx
+// Skeleton
+<div className="skeleton w-32 h-32"></div>
+
+// Button spinner
+<button className="btn" disabled={isLoading}>
+  {isLoading && <span className="loading loading-spinner"></span>}
+  {isLoading ? 'Processing...' : 'Save'}
+</button>
+```
+
+## Key Patterns
+- Use **Drawer** (`drawer`) for sidebars
+- Use **Modal** (`modal`) for dialogs
+- Use **Toast** (`toast`) for notifications
+- Group hover: `group` parent + `group-hover:text-primary` child
+- Form validation: Use react-hook-form, display errors with `text-error`

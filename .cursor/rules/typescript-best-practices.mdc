@@ -1,0 +1,79 @@
+---
+description: TypeScript best practices for type safety
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+# TypeScript Guidelines
+
+## Core Rules
+- Enable `strict: true` in tsconfig.json
+- Prefer type inference; only annotate when needed for clarity
+- Use `interface` for object shapes, `type` for unions/intersections/primitives
+- Avoid `any` (use `unknown` + type guards), avoid type assertions (`as`, `!`)
+
+## Interfaces vs Types
+```typescript
+// Interface for objects (extendable)
+interface User {
+  id: number
+  name: string
+}
+
+// Type for unions/intersections
+type Status = "pending" | "approved" | "rejected"
+type UserWithRole = User & { role: string }
+```
+
+## Null Handling
+```typescript
+// Handle null explicitly with early returns
+function processUser(user: User | null): void {
+  if (user === null) return
+  console.log(user.name) // TypeScript knows user is User
+}
+
+// Use optional chaining and nullish coalescing
+const timeout = config.timeout ?? 5000
+```
+
+## Type Guards
+```typescript
+function isUser(value: unknown): value is User {
+  return typeof value === "object" && value !== null && "id" in value
+}
+
+if (isUser(data)) {
+  console.log(data.name) // Safe
+}
+```
+
+## Discriminated Unions
+```typescript
+type Result<T> =
+  | { success: true; data: T }
+  | { success: false; error: string }
+
+function handle<T>(result: Result<T>) {
+  if (result.success) console.log(result.data)
+  else console.error(result.error)
+}
+```
+
+## Generics
+```typescript
+// Use constraints
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key]
+}
+
+// Don't overuse - keep simple when possible
+```
+
+## Utility Types
+Use built-in: `Partial<T>`, `Required<T>`, `Readonly<T>`, `Pick<T, K>`, `Omit<T, K>`, `keyof T`
+
+## Const Assertions
+```typescript
+const statuses = ["pending", "approved"] as const
+type Status = typeof statuses[number] // "pending" | "approved"
+```

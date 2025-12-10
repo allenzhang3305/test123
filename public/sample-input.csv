@@ -1,0 +1,7 @@
+product_sku,prod_name,url,img,dot_skus,dot_pos
+22-0141-0-19,,https://example.com/product1.html,,22-0140-0-19,20:20
+22-0141-0-19,,https://example.com/product1.html,,22-0140-0-19,20:20
+21-0056-0-19,,https://example.com/product2.html,,22-0139-0-19;1017750-v2,
+13-0034-0-19,,https://example.com/product3.html,,1017750-v2;22-0139-0-19,
+21-0056-0-19,,https://example.com/product4.html,,20-0101-0-19-v2,
+20-0070-0-19,,https://example.com/product5.html,,

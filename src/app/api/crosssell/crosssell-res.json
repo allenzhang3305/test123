@@ -1,0 +1,16 @@
+[
+    {
+        "sku": "1018140",
+        "link_type": "crosssell",
+        "linked_product_sku": "Addon-CS-1018103",
+        "linked_product_type": "simple",
+        "position": 10
+    },
+    {
+        "sku": "1018140",
+        "link_type": "crosssell",
+        "linked_product_sku": "Addon-CS-1018106",
+        "linked_product_type": "simple",
+        "position": 17
+    }
+]

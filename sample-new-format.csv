@@ -1,0 +1,3 @@
+product_sku,prod_name,url,img,dot_skus,dot_pos
+MAIN001,沙發組合,https://example.com/product.html,https://example.com/image.jpg,DOT001;DOT002;DOT003,30.5%:45.2%;60.3%:20.1%;75.0%:85.5%
+MAIN002,餐桌組合,https://example.com/table.html,https://example.com/table.jpg,TABLE001;TABLE002,25.0%:30.0%;70.0%:40.0%

@@ -1,0 +1,74 @@
+---
+description: Zustand state management patterns
+globs: **/*store*.ts,**/*Store*.ts,**/stores/**/*
+alwaysApply: false
+---
+# Zustand Guidelines
+
+## Store Pattern
+```typescript
+// src/stores/useOrderStore.ts
+import { create } from 'zustand'
+
+interface OrderState {
+  orders: Order[]
+  isLoading: boolean
+  error: string | null
+  setOrders: (orders: Order[]) => void
+  fetchOrders: () => Promise<void>
+}
+
+export const useOrderStore = create<OrderState>()((set, get) => ({
+  orders: [],
+  isLoading: false,
+  error: null,
+  setOrders: (orders) => set({ orders }),
+  fetchOrders: async () => {
+    set({ isLoading: true, error: null })
+    try {
+      const orders = await api.fetchOrders()
+      set({ orders, isLoading: false })
+    } catch (error) {
+      set({ error: error instanceof Error ? error.message : 'Error', isLoading: false })
+    }
+  },
+}))
+```
+
+## Key Rules
+- Place stores in `src/stores/`, name with `use*Store` suffix
+- Always define TypeScript interface for state
+- Use functional updates: `set((state) => ({ count: state.count + 1 }))`
+- Use `get()` to access current state in actions
+- Keep stores focused (one domain per store)
+
+## Usage in Components
+```typescript
+// Select specific state (prevents unnecessary re-renders)
+const count = useCounterStore((state) => state.count)
+const increment = useCounterStore((state) => state.increment)
+
+// For multiple values, use shallow
+import { shallow } from 'zustand/shallow'
+const { count, text } = useCounterStore(
+  (state) => ({ count: state.count, text: state.text }),
+  shallow
+)
+```
+
+## Middleware
+```typescript
+// Persist to localStorage
+import { persist, createJSONStorage } from 'zustand/middleware'
+
+export const useSettingsStore = create<SettingsState>()(
+  persist(
+    (set) => ({ theme: 'light', setTheme: (theme) => set({ theme }) }),
+    { name: 'settings-storage', storage: createJSONStorage(() => localStorage) }
+  )
+)
+
+// DevTools (development)
+import { devtools } from 'zustand/middleware'
+export const useStore = create<State>()(devtools((set) => ({ ... }), { name: 'StoreName' }))
+```
