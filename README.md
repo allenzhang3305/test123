@@ -3,13 +3,14 @@
 ## Setup
 
 1. You need a `.env.local`
-2. Install packages
+2. You need pnpm: https://pnpm.io/installation
+3. Install packages
 
 ```sh
 pnpm i
 ```
 
-3. (deployment only) Build
+4. (deployment only) Build
 
 ```sh
 pnpm run build
