@@ -30,8 +30,10 @@ COPY . .
 # Build-time environment variables (required for Next.js build)
 ARG NEXT_PUBLIC_BASE_URL
 ARG NEXT_PUBLIC_MEDIA_URL
+ARG END_POINT
 ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
 ENV NEXT_PUBLIC_MEDIA_URL=${NEXT_PUBLIC_MEDIA_URL}
+ENV END_POINT=${END_POINT}
 
 # Set environment for build
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -76,14 +78,19 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
+# Install Playwright with Chromium only (before copying app files)
+RUN corepack enable pnpm && \
+    mkdir -p /tmp/playwright && \
+    cd /tmp/playwright && \
+    pnpm init && \
+    pnpm add playwright@1.57.0 && \
+    npx playwright install chromium && \
+    rm -rf /tmp/playwright
+
 # Copy built application (standalone mode)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-
-# Install Playwright with Chromium only
-RUN npm install playwright@1.57.0 && \
-    npx playwright install chromium
 
 # Switch to non-root user
 USER nextjs

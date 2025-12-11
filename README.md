@@ -73,15 +73,26 @@ pnpm run start
 
 ### 本地測試
 
+需要設定環境變數才能建構：
+
 ```sh
-docker build -t product-combo-manager .
-docker run -p 3000:3000 --env-file .env.local --shm-size=256m product-combo-manager
+# 使用 Docker Compose（推薦）
+NEXT_PUBLIC_BASE_URL=https://www.mrliving.com.tw \
+NEXT_PUBLIC_MEDIA_URL=https://media.mrliving.com.tw \
+END_POINT=https://api.mrliving.com.tw \
+docker compose up --build
 ```
 
-或使用 Docker Compose：
+或使用 Docker 指令：
 
 ```sh
-docker compose up --build
+docker build \
+  --build-arg NEXT_PUBLIC_BASE_URL=https://www.mrliving.com.tw \
+  --build-arg NEXT_PUBLIC_MEDIA_URL=https://media.mrliving.com.tw \
+  --build-arg END_POINT=https://api.mrliving.com.tw \
+  -t product-combo-manager .
+
+docker run -p 3000:3000 --env-file .env.local --shm-size=256m product-combo-manager
 ```
 
 ### GCP 部署
