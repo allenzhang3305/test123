@@ -79,9 +79,10 @@ pnpm run start
 # 使用 Docker Compose（推薦）
 NEXT_PUBLIC_BASE_URL=https://www.mrliving.com.tw \
 NEXT_PUBLIC_MEDIA_URL=https://media.mrliving.com.tw \
-END_POINT=https://api.mrliving.com.tw \
+END_POINT=http://dev-release-devbk243.mrliving.tw \
 docker compose up --build
 ```
+
 
 或使用 Docker 指令：
 
