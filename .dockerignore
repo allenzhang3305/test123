@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build output
+.next
+out
+
+# Git
+.git
+.gitignore
+
+# Environment files (use env vars instead)
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode
+.idea
+.cursor
+.claude
+
+# Misc
+*.md
+!README.md
+*.log
+.DS_Store
+
+# Test files
+*.test.*
+*.spec.*
+__tests__
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore

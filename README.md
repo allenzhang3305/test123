@@ -68,3 +68,22 @@ pnpm dev
 pnpm run build
 pnpm run start
 ```
+
+## Docker 部署
+
+### 本地測試
+
+```sh
+docker build -t product-combo-manager .
+docker run -p 3000:3000 --env-file .env.local --shm-size=256m product-combo-manager
+```
+
+或使用 Docker Compose：
+
+```sh
+docker compose up --build
+```
+
+### GCP 部署
+
+詳見 [GCP 部署指南](docs/GCP_DEPLOYMENT.md)。

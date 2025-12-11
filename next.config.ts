@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 import "@/lib/client/constants/frontend-config";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   devIndicators: false,
   experimental: {
     optimizePackageImports: ["lucide-react"],
