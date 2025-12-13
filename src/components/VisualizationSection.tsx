@@ -43,13 +43,13 @@ export const VisualizationSection = ({
   return (
     <div className="mt-8">
       <div className="flex items-center mb-4 gap-2">
-        <h2 className="text-lg font-semibold">Visualization</h2>
+        <h2 className="text-lg font-semibold">視覺化區</h2>
         <SortButton sortOrder={sortOrder} onSortChange={onSortChange} />
       </div>
       {loadingImages && (
         <div className="fixed bottom-4 left-4 alert alert-info shadow-lg z-50">
           <span className="loading loading-spinner loading-sm" />
-          <span>Loading product images...</span>
+          <span>正在載入商品圖片...</span>
         </div>
       )}
       {displayRows.length > 0 && (

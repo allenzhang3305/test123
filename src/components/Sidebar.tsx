@@ -24,14 +24,14 @@ export const Sidebar = () => {
         }`}
       >
         <Link href="/" className="text-xl font-semibold">
-          Combo Tools
+          組合工具
         </Link>
-        <div className="tooltip tooltip-bottom" data-tip="Collapse sidebar">
+        <div className="tooltip tooltip-bottom" data-tip="收合側邊欄">
           <button
             type="button"
             onClick={toggleSidebar}
             className="btn btn-sm btn-circle btn-ghost"
-            aria-label="Collapse sidebar"
+            aria-label="收合側邊欄"
             aria-expanded={!isCollapsed}
           >
             <XIcon className="w-4 h-4" aria-hidden="true" />
@@ -44,16 +44,16 @@ export const Sidebar = () => {
           isCollapsed ? "opacity-0" : "opacity-100"
         }`}
       >
-        <p className="text-sm text-base-content/70">© {currentYear} Combo Tools</p>
+        <p className="text-sm text-base-content/70">© {currentYear} 組合工具</p>
       </div>
 
       {isCollapsed && (
-        <div className="tooltip tooltip-right fixed top-4 left-4 z-50" data-tip="Expand sidebar">
+        <div className="tooltip tooltip-right fixed top-4 left-4 z-50" data-tip="展開側邊欄">
           <button
             type="button"
             onClick={toggleSidebar}
             className="btn btn-sm btn-circle btn-ghost shadow-lg"
-            aria-label="Expand sidebar"
+            aria-label="展開側邊欄"
             aria-expanded={!isCollapsed}
           >
             <MenuIcon className="w-5 h-5" aria-hidden="true" />

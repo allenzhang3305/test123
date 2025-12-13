@@ -259,7 +259,7 @@ const CrosssellPage = () => {
     if (!requestedSkus.length) {
       return (
         <div className="text-center py-8 text-base-content/60">
-          Upload a CSV to view crosssell data.
+          上傳 CSV 以檢視crosssell資料。
         </div>
       );
     }
@@ -269,7 +269,7 @@ const CrosssellPage = () => {
         <div className="text-center py-8">
           <span className="flex items-center justify-center gap-2 text-base-content/60">
             <Loader2Icon className="w-5 h-5 animate-spin" />
-            Fetching crosssell data…
+            正在抓取crosssell資料…
           </span>
         </div>
       );
@@ -282,9 +282,9 @@ const CrosssellPage = () => {
         return (
           <div key={sku} className="card bg-base-100 shadow mb-6">
             <div className="card-body">
-              <h3 className="card-title text-lg mb-4">Parent SKU: {sku}</h3>
+              <h3 className="card-title text-lg mb-4">主商品 SKU：{sku}</h3>
               <div className="text-center py-4 text-base-content/60">
-                No crosssell items found.
+                找不到crosssell項目。
               </div>
             </div>
           </div>
@@ -295,7 +295,7 @@ const CrosssellPage = () => {
       return (
         <div key={sku} className="card bg-base-100 shadow mb-6">
           <div className="card-body">
-            <h3 className="card-title text-lg mb-4">Parent SKU: {sku}</h3>
+            <h3 className="card-title text-lg mb-4">主商品 SKU：{sku}</h3>
             <div className="overflow-x-auto">
               <DndContext
                 sensors={sensors}
@@ -339,10 +339,9 @@ const CrosssellPage = () => {
       <div className="max-w-5xl mx-auto px-4 py-10">
         <div className="flex items-start justify-between flex-wrap gap-4">
           <div>
-            <h1 className="text-3xl font-semibold mb-2">Crosssell Overview</h1>
+            <h1 className="text-3xl font-semibold mb-2">Crosssell總覽</h1>
             <p className="text-base text-base-content/70 max-w-2xl">
-              Upload a CSV containing the columns <span className="font-semibold">sku, name, crosssell_skus</span>. We only use the SKU column to fetch
-              crosssell links from the backend API or the dummy data source.
+              上傳包含 <span className="font-semibold">sku, name, crosssell_skus</span> 欄位的 CSV。我們只使用 SKU 欄位從後端 API 或範例資料來源抓取 crosssell連結。
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <button
@@ -356,11 +355,11 @@ const CrosssellPage = () => {
                 ) : (
                   <DownloadIcon className="w-5 h-5" />
                 )}
-                Pull Dummy Data
+                拉取範例資料
               </button>
               <Link href="/crosssell/settings" className="btn btn-md btn-outline btn-neutral gap-2 hover:bg-neutral hover:text-neutral-content">
                 <SettingsIcon className="w-5 h-5" />
-                Crosssell Settings
+                Crosssell設定
               </Link>
             </div>
           </div>
@@ -383,10 +382,10 @@ const CrosssellPage = () => {
                   <FileSpreadsheetIcon className="w-8 h-8 text-base-content/60" />
                 )}
                 <div className="text-base">
-                  <strong>Drag & drop</strong> your CSV here, or <u>click to choose</u>.
+                  <strong>拖放</strong>您的 CSV 檔案到此處，或<u>點擊選擇</u>。
                 </div>
                 <div className="text-xs text-base-content/60">
-                  Expected header: <code>sku,name,crosssell_skus</code>
+                  需要欄位：<code>sku,name,crosssell_skus</code>
                 </div>
               </div>
             </div>
@@ -409,10 +408,10 @@ const CrosssellPage = () => {
 
         <div className="mt-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold">Crosssell Results</h2>
+            <h2 className="text-2xl font-semibold">Crosssell結果</h2>
             {isLoading && (
               <span className="flex items-center gap-2 text-sm text-base-content/60">
-                <Loader2Icon className="w-4 h-4 animate-spin" /> Fetching…
+                <Loader2Icon className="w-4 h-4 animate-spin" /> 抓取中…
               </span>
             )}
           </div>

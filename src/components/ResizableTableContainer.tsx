@@ -101,11 +101,11 @@ export const ResizableTableContainer = ({
       {title && (
         <div className="flex items-center mb-2 gap-2">
           <h2 className="text-sm font-semibold text-base-content/70">{title}</h2>
-          <div className="tooltip" data-tip={isCollapsed ? "Expand table" : "Collapse table"}>
+          <div className="tooltip" data-tip={isCollapsed ? "展開表格" : "收合表格"}>
             <button
               onClick={handleToggleCollapse}
               className="btn btn-xs btn-ghost gap-1"
-              aria-label={isCollapsed ? "Expand table" : "Collapse table"}
+              aria-label={isCollapsed ? "展開表格" : "收合表格"}
             >
               {isCollapsed ? (
                 <ChevronDownIcon className="w-4 h-4" />
@@ -131,7 +131,7 @@ export const ResizableTableContainer = ({
             onMouseDown={handleMouseDown}
             className={`absolute bottom-0 left-0 right-0 h-2 cursor-ns-resize bg-base-300 hover:bg-base-content/20 transition-colors ${isResizing ? "bg-base-content/30" : ""
               }`}
-            title="Drag to resize table height"
+            title="拖曳以調整表格高度"
           >
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-12 h-0.5 bg-base-content/40 rounded"></div>

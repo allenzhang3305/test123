@@ -27,12 +27,12 @@ const CrosssellSettingsPage = () => {
     const trimmedToken = tokenInput.trim();
 
     if (!trimmedToken) {
-      toast.error("Token is required.");
+      toast.error("必須提供 Token。");
       return;
     }
 
     setStoredToken(trimmedToken);
-    toast.success("Crosssell token saved successfully.");
+    toast.success("交叉銷售 Token 儲存成功。");
   };
 
   const handleTokenInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -47,15 +47,15 @@ const CrosssellSettingsPage = () => {
     <main className="max-w-2xl mx-auto px-4 py-10">
       <Link href="/crosssell" className="btn btn-ghost gap-2 mb-6">
         <ArrowLeftIcon className="w-4 h-4" />
-        Back to Crosssell
+        返回Crosssell
       </Link>
 
       <div className="flex items-center gap-3 mb-6">
         <ShieldCheckIcon className="w-9 h-9 text-primary" />
         <div>
-          <h1 className="text-3xl font-semibold">Crosssell Settings</h1>
+          <h1 className="text-3xl font-semibold">Crosssell設定</h1>
           <p className="text-base-content/70">
-            Store your bearer token securely on this device. It will be used for crosssell API requests.
+            在此裝置上安全儲存您的 Bearer Token。它將用於Crosssell API 請求。
           </p>
         </div>
       </div>
@@ -65,14 +65,14 @@ const CrosssellSettingsPage = () => {
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Bearer Token</span>
-              <span className="label-text-alt text-base-content/60">Required</span>
+              <span className="label-text-alt text-base-content/60">必填</span>
             </label>
             <div className="join w-full">
               <input
                 type={showToken ? "text" : "password"}
                 value={tokenInput}
                 onChange={handleTokenInputChange}
-                placeholder="Paste bearer token"
+                placeholder="貼上 Bearer Token"
                 className="input input-bordered join-item w-full"
                 autoComplete="off"
               />
@@ -86,7 +86,7 @@ const CrosssellSettingsPage = () => {
             </div>
             <label className="label">
               <span className="label-text-alt text-base-content/60">
-                Bear token get from login M2
+                從 M2 登入取得的 Bearer Token
               </span>
             </label>
           </div>
@@ -97,7 +97,7 @@ const CrosssellSettingsPage = () => {
             onClick={handleSaveToken}
           >
             <SaveIcon className="w-4 h-4" />
-            Save Token
+            儲存 Token
           </button>
         </div>
       </div>

@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <main>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-semibold mb-6">Combo Tools</h1>
+        <h1 className="text-2xl font-semibold mb-6">組合圖小工具</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <Link href="/edit-combo" className="card bg-base-100 shadow hover:shadow-lg hover:shadow-primary/20 border border-base-200 hover:border-primary/30 transition-all duration-200 group">
             <div className="card-body">
@@ -15,9 +15,9 @@ export default function Page() {
                   <EditIcon className="w-7 h-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="card-title text-lg group-hover:text-primary transition-colors">Edit Combo</h2>
-                  <p className="text-sm text-base-content/70 mt-1">Process CSV and store rows globally.</p>
-                  <div className="badge badge-primary badge-sm mt-2">Core Feature</div>
+                  <h2 className="card-title text-lg group-hover:text-primary transition-colors">編輯組合</h2>
+                  <p className="text-sm text-base-content/70 mt-1">處理 CSV 與全域儲存資料列。</p>
+                  <div className="badge badge-primary badge-sm mt-2">核心功能</div>
                 </div>
               </div>
             </div>
@@ -29,9 +29,9 @@ export default function Page() {
                   <EyeIcon className="w-7 h-7 text-info" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="card-title text-lg group-hover:text-info transition-colors">View Production</h2>
-                  <p className="text-sm text-base-content/70 mt-1">Scrape and view image cards with filters.</p>
-                  <div className="badge badge-info badge-sm mt-2">Visualization</div>
+                  <h2 className="card-title text-lg group-hover:text-info transition-colors">檢視正式版</h2>
+                  <p className="text-sm text-base-content/70 mt-1">抓取並檢視篩選後的圖片卡片。</p>
+                  <div className="badge badge-info badge-sm mt-2">視覺化</div>
                 </div>
               </div>
             </div>
@@ -43,9 +43,9 @@ export default function Page() {
                   <ShoppingCartIcon className="w-7 h-7 text-secondary" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="card-title text-lg group-hover:text-secondary transition-colors">Crosssell Management</h2>
-                  <p className="text-sm text-base-content/70 mt-1">Manage crosssell product relationships.</p>
-                  <div className="badge badge-secondary badge-sm mt-2">Advanced</div>
+                  <h2 className="card-title text-lg group-hover:text-secondary transition-colors">Crosssell管理</h2>
+                  <p className="text-sm text-base-content/70 mt-1">管理crosssell商品。</p>
+                  <div className="badge badge-secondary badge-sm mt-2">進階</div>
                 </div>
               </div>
             </div>

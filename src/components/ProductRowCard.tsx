@@ -385,12 +385,12 @@ const ProductRowCardComponent = ({
         <div className="flex items-center justify-between mb-2 gap-2">
           <span className="badge badge-primary badge-sm">#{originalIndex + 1}</span>
           <div className="flex items-center gap-2">
-            <div className="tooltip tooltip-bottom" data-tip="Suggest positions with AI">
+            <div className="tooltip tooltip-bottom" data-tip="使用 AI 建議位置">
               <button
                 onClick={handleSuggestPosition}
                 disabled={isSuggesting}
                 className="btn btn-xs btn-ghost p-0.5 w-8 h-8 text-primary"
-                aria-label="Suggest positions with AI"
+                aria-label="使用 AI 建議位置"
               >
                 {isSuggesting ? (
                   <span className="loading loading-spinner loading-xs"></span>
@@ -399,22 +399,22 @@ const ProductRowCardComponent = ({
                 )}
               </button>
             </div>
-            <div className="tooltip tooltip-bottom" data-tip="Edit main product">
+            <div className="tooltip tooltip-bottom" data-tip="編輯主商品">
               <button
                 type="button"
                 onClick={handleOpenMainEditModal}
                 className="btn btn-xs btn-ghost p-0.5 w-8 h-8"
-                aria-label="Edit main product"
+                aria-label="編輯主商品"
               >
                 <Edit3Icon className="w-4 h-4" />
               </button>
             </div>
-            <div className="tooltip tooltip-bottom" data-tip="Delete main product">
+            <div className="tooltip tooltip-bottom" data-tip="刪除主商品">
               <button
                 type="button"
                 onClick={handleOpenDeleteModal}
                 className="btn btn-xs btn-ghost p-0.5 w-8 h-8 text-error"
-                aria-label="Delete main product"
+                aria-label="刪除主商品"
               >
                 <TrashIcon className="w-4 h-4" />
               </button>
@@ -478,7 +478,7 @@ const ProductRowCardComponent = ({
                       onMouseEnter={() => handleDotHover(dot.sku)}
                       onMouseLeave={handleDotHoverLeave}
                       onClick={() => handleDotClick(dot.sku)}
-                      title={hasNoPosition ? "Click to set position on image" : "Click to modify position on image"}
+                      title={hasNoPosition ? "點擊以在圖片上設定位置" : "點擊以在圖片上修改位置"}
                     >
                       {dotProductImages[dot.sku] ? (
                         <Image
@@ -490,24 +490,24 @@ const ProductRowCardComponent = ({
                         />
                       ) : (
                         <div className="w-full h-full bg-base-300 rounded flex items-center justify-center text-[8px] text-base-content/60">
-                          No img
+                          無圖片
                         </div>
                       )}
-                      <div className="tooltip tooltip-top absolute -top-1.5 -right-1.5 z-10" data-tip="Remove SKU">
+                      <div className="tooltip tooltip-top absolute -top-1.5 -right-1.5 z-10" data-tip="移除 SKU">
                         <button
                           onClick={(e) => handleRemoveDotSku(dot.sku, e)}
                           className="w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
-                          aria-label="Remove SKU"
+                          aria-label="移除 SKU"
                         >
                           <XIcon className="w-3 h-3" />
                         </button>
                       </div>
-                      <div className="tooltip tooltip-top absolute -top-1.5 -left-1.5 z-10" data-tip="Edit SKU">
+                      <div className="tooltip tooltip-top absolute -top-1.5 -left-1.5 z-10" data-tip="編輯 SKU">
                         <button
                           type="button"
                           onClick={(event) => handleOpenDotEditModal(dot, j, event)}
                           className="w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
-                          aria-label="Edit SKU"
+                          aria-label="編輯 SKU"
                         >
                           <Edit3Icon className="w-3 h-3" />
                         </button>
@@ -521,7 +521,7 @@ const ProductRowCardComponent = ({
                 <button
                   onClick={handleOpenAddSkuModal}
                   className="btn btn-sm btn-circle btn-ghost w-16 h-16 border-2 border-dashed border-base-content/30 hover:border-primary"
-                  aria-label="Add SKU"
+                  aria-label="新增 SKU"
                 >
                   <PlusIcon className="w-5 h-5" />
                 </button>
@@ -559,12 +559,12 @@ const ProductRowCardComponent = ({
             {/* Dot Products - Right Side */}
             <div className="flex-1 w-1/2">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-xs font-semibold text-base-content/70">Dot Products:</h4>
-                <div className="tooltip" data-tip="Add SKU">
+                <h4 className="text-xs font-semibold text-base-content/70">白點商品：</h4>
+                <div className="tooltip" data-tip="新增 SKU">
                   <button
                     onClick={handleOpenAddSkuModal}
                     className="btn btn-xs btn-circle btn-ghost"
-                    aria-label="Add SKU"
+                    aria-label="新增 SKU"
                   >
                     <PlusIcon className="w-4 h-4" />
                   </button>
@@ -592,7 +592,7 @@ const ProductRowCardComponent = ({
                           onMouseEnter={() => handleDotHover(dot.sku)}
                           onMouseLeave={handleDotHoverLeave}
                           onClick={() => handleDotClick(dot.sku)}
-                          title={hasNoPosition ? "Click to set position on image" : "Click to modify position on image"}
+                          title={hasNoPosition ? "點擊以在圖片上設定位置" : "點擊以在圖片上修改位置"}
                         >
                           <div className="relative w-12 h-12 shrink-0">
                             {dotProductImages[dot.sku] ? (
@@ -615,7 +615,7 @@ const ProductRowCardComponent = ({
                                 <p className="text-xs font-medium">{dot.sku}</p>
                                 {failedDotSkus.has(dot.sku) && (
                                   <span className="text-[10px] text-error font-medium">
-                                    (Not found)
+                                    (找不到)
                                   </span>
                                 )}
                               </div>
@@ -657,7 +657,7 @@ const ProductRowCardComponent = ({
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-full text-xs text-base-content/60">
-                  No dot products
+                  無白點商品
                 </div>
               )}
             </div>
@@ -667,14 +667,14 @@ const ProductRowCardComponent = ({
         {/* Modal for adding SKU */}
         <dialog ref={modalRef} className="modal">
           <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">Add Dot Product SKU</h3>
+            <h3 className="font-bold text-lg mb-4">新增白點商品 SKU</h3>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">SKU</span>
               </label>
               <input
                 type="text"
-                placeholder="Enter SKU"
+                placeholder="輸入 SKU"
                 className="input input-bordered w-full"
                 value={skuInput}
                 onChange={(e) => setSkuInput(e.target.value)}
@@ -689,11 +689,11 @@ const ProductRowCardComponent = ({
             <div className="modal-action">
               <form method="dialog">
                 <button className="btn btn-ghost" onClick={handleCloseModal}>
-                  Cancel
+                  取消
                 </button>
               </form>
               <button className="btn btn-primary" onClick={handleAddSku}>
-                Add
+                新增
               </button>
             </div>
           </div>
@@ -703,11 +703,11 @@ const ProductRowCardComponent = ({
         </dialog>
         <dialog ref={mainEditModalRef} className="modal">
           <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">Edit Main Product</h3>
+            <h3 className="font-bold text-lg mb-4">編輯主商品</h3>
             <div className="space-y-3">
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Product name</span>
+                  <span className="label-text">商品名稱</span>
                 </label>
                 <input
                   type="text"
@@ -733,7 +733,7 @@ const ProductRowCardComponent = ({
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">URL (optional)</span>
+                  <span className="label-text">網址（選填）</span>
                 </label>
                 <input
                   type="url"
@@ -746,7 +746,7 @@ const ProductRowCardComponent = ({
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Image URL (optional)</span>
+                  <span className="label-text">圖片網址（選填）</span>
                 </label>
                 <input
                   type="url"
@@ -762,7 +762,7 @@ const ProductRowCardComponent = ({
             <div className="modal-action">
               <form method="dialog">
                 <button className="btn btn-ghost" onClick={handleMainEditCancel}>
-                  Cancel
+                  取消
                 </button>
               </form>
               <button
@@ -770,7 +770,7 @@ const ProductRowCardComponent = ({
                 onClick={handleSubmitMainEdit}
                 disabled={!mainEditFields.prodName.trim() || !mainEditFields.productSku.trim()}
               >
-                Save
+                儲存
               </button>
             </div>
           </div>
@@ -780,7 +780,7 @@ const ProductRowCardComponent = ({
         </dialog>
         <dialog ref={dotEditModalRef} className="modal">
           <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">Edit Dot Product</h3>
+            <h3 className="font-bold text-lg mb-4">編輯白點商品</h3>
             <div className="space-y-3">
               <div className="form-control w-full">
                 <label className="label">
@@ -798,7 +798,7 @@ const ProductRowCardComponent = ({
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Top (e.g., 25%)</span>
+                  <span className="label-text">Top（e.g., 25%）</span>
                 </label>
                 <input
                   type="text"
@@ -812,7 +812,7 @@ const ProductRowCardComponent = ({
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Left (e.g., 50%)</span>
+                  <span className="label-text">左（例如 50%）</span>
                 </label>
                 <input
                   type="text"
@@ -828,7 +828,7 @@ const ProductRowCardComponent = ({
             <div className="modal-action">
               <form method="dialog">
                 <button className="btn btn-ghost" onClick={handleDotEditCancel}>
-                  Cancel
+                  取消
                 </button>
               </form>
               <button
@@ -836,7 +836,7 @@ const ProductRowCardComponent = ({
                 onClick={handleSubmitDotEdit}
                 disabled={!dotEditFields?.sku.trim()}
               >
-                Save
+                儲存
               </button>
             </div>
           </div>
@@ -846,23 +846,22 @@ const ProductRowCardComponent = ({
         </dialog>
         <dialog ref={deleteModalRef} className="modal">
           <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4 text-error">Delete main product?</h3>
+            <h3 className="font-bold text-lg mb-4 text-error">刪除主商品？</h3>
             <p className="text-sm text-base-content/70 mb-4">
-              Removing the main product will drop this entire card and its dot products. This action
-              cannot be undone here.
+              移除主商品會刪除整張卡片及其白點商品。此操作無法在此處復原。
             </p>
             <p className="text-sm text-base-content/60 mb-6">
-              <strong className="text-base-content">{row.prod_name || "Untitled product"}</strong> · SKU:{" "}
+              <strong className="text-base-content">{row.prod_name || "未命名商品"}</strong> · SKU：{" "}
               <span className="font-mono text-xs">{row.product_sku || "N/A"}</span>
             </p>
             <div className="modal-action">
               <form method="dialog">
                 <button className="btn btn-ghost" onClick={handleCancelDelete}>
-                  Cancel
+                  取消
                 </button>
               </form>
               <button className="btn btn-error" onClick={handleConfirmDelete}>
-                Confirm delete
+                確認刪除
               </button>
             </div>
           </div>

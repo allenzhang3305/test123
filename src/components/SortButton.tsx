@@ -14,22 +14,22 @@ export const SortButton = ({ sortOrder, onSortChange }: SortButtonProps) => {
   };
 
   return (
-    <div className="tooltip" data-tip={`Sort by # (${sortOrder === "asc" ? "Ascending" : "Descending"})`}>
+    <div className="tooltip" data-tip={`依編號排序 (${sortOrder === "asc" ? "小到大" : "大到小"})`}>
       <button
         type="button"
         className="btn btn-sm btn-outline gap-2 hover:bg-base-200"
         onClick={handleSortClick}
-        aria-label={`Sort by # (${sortOrder === "asc" ? "Ascending" : "Descending"})`}
+        aria-label={`依編號排序 (${sortOrder === "asc" ? "小到大" : "大到小"})`}
       >
         {sortOrder === "asc" ? (
           <>
             <ArrowUpIcon className="w-4 h-4" />
-            <span>Sort by # ↑</span>
+            <span>依 #編號 排序 ↑</span>
           </>
         ) : (
           <>
             <ArrowDownIcon className="w-4 h-4" />
-            <span>Sort by # ↓</span>
+            <span>依#編號 排序 ↓</span>
           </>
         )}
       </button>

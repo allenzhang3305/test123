@@ -31,15 +31,15 @@ export const SidebarNav = () => {
     () => [
       {
         // Section 1: Home
-        items: [{ href: "/", label: "Home", Icon: HomeIcon }],
+        items: [{ href: "/", label: "首頁", Icon: HomeIcon }],
       },
       {
         // Section 2: Combo Tools
-        title: "Combo Tools",
+        title: "組合圖小工具",
         items: [
-          { href: "/edit-combo", label: "Edit Combo", Icon: EditIcon },
-          { href: "/view-production", label: "View Production", Icon: EyeIcon },
-          { href: "/settings", label: "Combo Setting", Icon: SettingsIcon },
+          { href: "/edit-combo", label: "編輯組合圖", Icon: EditIcon },
+          { href: "/view-production", label: "檢視正式版", Icon: EyeIcon },
+          { href: "/settings", label: "組合圖小工具設定", Icon: SettingsIcon },
         ],
       },
       {
@@ -48,12 +48,12 @@ export const SidebarNav = () => {
         items: [
           {
             href: "/crosssell",
-            label: "Crosssell Management",
+            label: "Crosssell管理",
             Icon: ShoppingCartIcon,
           },
           {
             href: "/crosssell/settings",
-            label: "Crosssell Settings",
+            label: "Crosssell設定",
             Icon: KeySquareIcon,
           },
         ],

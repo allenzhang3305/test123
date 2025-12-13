@@ -49,7 +49,7 @@ export default function Page() {
     <main>
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-semibold">View Production</h1>
+          <h1 className="text-2xl font-semibold">檢視正式版</h1>
           <button 
             onClick={onScrape} 
             disabled={loading || rows.length === 0} 
@@ -60,7 +60,7 @@ export default function Page() {
             ) : (
               <>
                 <Wand2Icon className="w-4 h-4" />
-                Scrape
+                抓取
               </>
             )}
           </button>
@@ -73,21 +73,21 @@ export default function Page() {
               onClick={() => setImgFilter("all")}
             >
               <FilterIcon className="w-4 h-4" />
-              All
+              全部
             </button>
             <button
               className={`btn btn-sm join-item gap-2 ${imgFilter === "with" ? "btn-active" : ""}`}
               onClick={() => setImgFilter("with")}
             >
               <ImageIcon className="w-4 h-4" />
-              With image
+              有圖片
             </button>
             <button
               className={`btn btn-sm join-item gap-2 ${imgFilter === "without" ? "btn-active" : ""}`}
               onClick={() => setImgFilter("without")}
             >
               <ImageOffIcon className="w-4 h-4" />
-              No image
+              無圖片
             </button>
           </div>
         </div>

@@ -170,7 +170,7 @@ const ProductImageWithDotsComponent = ({
           {isPlacementMode && (
             <div className="absolute inset-0 bg-primary/10 border-2 border-dashed border-primary rounded z-10 flex items-center justify-center pointer-events-none">
               <div className="bg-primary text-primary-content px-4 py-2 rounded shadow-lg pointer-events-auto">
-                Click on image to set position
+                點擊圖片以設定位置
               </div>
             </div>
           )}
@@ -204,10 +204,10 @@ const ProductImageWithDotsComponent = ({
                     }}
                     title={
                       hasPosition
-                        ? `${dot.sku} (Top: ${top.toFixed(2)}%, Left: ${left.toFixed(
+                        ? `${dot.sku} (上: ${top.toFixed(2)}%, 左: ${left.toFixed(
                             2,
-                          )}%) - Drag to move`
-                        : `${dot.sku} - Click to set position`
+                          )}%) - 拖曳以移動`
+                        : `${dot.sku} - 點擊以設定位置`
                     }
                     onMouseEnter={() => !isDragging && handleDotHover(dot.sku)}
                     onMouseLeave={() => !isDragging && handleDotHoverLeave()}
@@ -235,15 +235,15 @@ const ProductImageWithDotsComponent = ({
       ) : (
         <div className="w-full aspect-square bg-base-200 rounded flex flex-col items-center justify-center gap-2 p-4">
           <div className="text-xs text-base-content/60">
-            No img
+            無圖片
           </div>
           {onUpdateImageUrl && (
-            <div className="tooltip" data-tip="Update image URL">
+            <div className="tooltip" data-tip="更新圖片網址">
               <button
                 onClick={onUpdateImageUrl}
                 className="btn btn-xs btn-outline btn-primary"
               >
-                Update img URL
+                更新圖片網址
               </button>
             </div>
           )}

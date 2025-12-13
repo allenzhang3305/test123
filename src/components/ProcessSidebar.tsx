@@ -34,14 +34,14 @@ export function ProcessSidebar({
     <div className="drawer-side z-40">
       <label htmlFor="process-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
       <div className="w-80 lg:w-96 bg-base-200 min-h-full p-4 overflow-y-auto">
-        <h2 className="text-xl font-semibold mb-3">Process CSV</h2>
+        <h2 className="text-xl font-semibold mb-3">處理 CSV</h2>
         <div
           onDragEnter={prevent}
           onDragOver={prevent}
           onDrop={onDrop}
           onClick={() => inputRef.current?.click()}
           className="border-2 border-dashed border-base-300 rounded-xl p-6 text-center cursor-pointer bg-base-100 hover:bg-base-300/40 transition"
-          aria-label="Drop CSV here"
+          aria-label="拖放 CSV 檔案到此處"
         >
           <input
             ref={inputRef}
@@ -53,7 +53,7 @@ export function ProcessSidebar({
           <div className="flex flex-col items-center gap-2">
             <FileSpreadsheetIcon className="w-8 h-8 text-base-content/60" />
             <div className="text-base">
-              <strong>Drag & drop</strong> your CSV here, or <u>click to choose</u>.
+              <strong>拖放</strong>您的 CSV 檔案到此處，或<u>點擊選擇</u>。
             </div>
             <div className="text-xs text-base-content/60 mt-2">
               我們將抽取：商品名、商品SKU、前台連結、白點商品1/2/3 SKU
@@ -64,7 +64,7 @@ export function ProcessSidebar({
         {procLoading && (
           <div className="mt-4 alert alert-info">
             <span className="loading loading-spinner loading-sm" />
-            <span>Processing…</span>
+            <span>處理中…</span>
           </div>
         )}
         {procError && (
@@ -76,7 +76,7 @@ export function ProcessSidebar({
         {!!rows.length && (
           <>
             <p className="mt-4">
-              Parsed rows: <strong>{rows.length}</strong>
+              已解析列數：<strong>{rows.length}</strong>
             </p>
             <div className="overflow-x-auto mt-2">
               <table className="table table-xs">
