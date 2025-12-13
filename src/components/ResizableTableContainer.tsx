@@ -101,18 +101,19 @@ export const ResizableTableContainer = ({
       {title && (
         <div className="flex items-center mb-2 gap-2">
           <h2 className="text-sm font-semibold text-base-content/70">{title}</h2>
-          <button
-            onClick={handleToggleCollapse}
-            className="btn btn-xs btn-ghost gap-1"
-            title={isCollapsed ? "Expand table" : "Collapse table"}
-            aria-label={isCollapsed ? "Expand table" : "Collapse table"}
-          >
-            {isCollapsed ? (
-              <ChevronDownIcon className="w-4 h-4" />
-            ) : (
-              <ChevronUpIcon className="w-4 h-4" />
-            )}
-          </button>
+          <div className="tooltip" data-tip={isCollapsed ? "Expand table" : "Collapse table"}>
+            <button
+              onClick={handleToggleCollapse}
+              className="btn btn-xs btn-ghost gap-1"
+              aria-label={isCollapsed ? "Expand table" : "Collapse table"}
+            >
+              {isCollapsed ? (
+                <ChevronDownIcon className="w-4 h-4" />
+              ) : (
+                <ChevronUpIcon className="w-4 h-4" />
+              )}
+            </button>
+          </div>
         </div>
       )}
       {!isCollapsed && (

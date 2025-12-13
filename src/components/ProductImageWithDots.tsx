@@ -238,13 +238,14 @@ const ProductImageWithDotsComponent = ({
             No img
           </div>
           {onUpdateImageUrl && (
-            <button
-              onClick={onUpdateImageUrl}
-              className="btn btn-xs btn-outline btn-primary"
-              title="Update image URL"
-            >
-              Update img URL
-            </button>
+            <div className="tooltip" data-tip="Update image URL">
+              <button
+                onClick={onUpdateImageUrl}
+                className="btn btn-xs btn-outline btn-primary"
+              >
+                Update img URL
+              </button>
+            </div>
           )}
         </div>
       )}

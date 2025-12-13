@@ -14,25 +14,26 @@ export const SortButton = ({ sortOrder, onSortChange }: SortButtonProps) => {
   };
 
   return (
-    <button
-      type="button"
-      className="btn btn-sm btn-outline gap-2 hover:bg-base-200"
-      onClick={handleSortClick}
-      title={`Sort by # (${sortOrder === "asc" ? "Ascending" : "Descending"})`}
-      aria-label={`Sort by # (${sortOrder === "asc" ? "Ascending" : "Descending"})`}
-    >
-      {sortOrder === "asc" ? (
-        <>
-          <ArrowUpIcon className="w-4 h-4" />
-          <span>Sort by # ↑</span>
-        </>
-      ) : (
-        <>
-          <ArrowDownIcon className="w-4 h-4" />
-          <span>Sort by # ↓</span>
-        </>
-      )}
-    </button>
+    <div className="tooltip" data-tip={`Sort by # (${sortOrder === "asc" ? "Ascending" : "Descending"})`}>
+      <button
+        type="button"
+        className="btn btn-sm btn-outline gap-2 hover:bg-base-200"
+        onClick={handleSortClick}
+        aria-label={`Sort by # (${sortOrder === "asc" ? "Ascending" : "Descending"})`}
+      >
+        {sortOrder === "asc" ? (
+          <>
+            <ArrowUpIcon className="w-4 h-4" />
+            <span>Sort by # ↑</span>
+          </>
+        ) : (
+          <>
+            <ArrowDownIcon className="w-4 h-4" />
+            <span>Sort by # ↓</span>
+          </>
+        )}
+      </button>
+    </div>
   );
 };
 

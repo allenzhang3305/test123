@@ -26,16 +26,17 @@ export const Sidebar = () => {
         <Link href="/" className="text-xl font-semibold">
           Combo Tools
         </Link>
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="btn btn-sm btn-circle btn-ghost"
-          title="Collapse sidebar"
-          aria-label="Collapse sidebar"
-          aria-expanded={!isCollapsed}
-        >
-          <XIcon className="w-4 h-4" aria-hidden="true" />
-        </button>
+        <div className="tooltip tooltip-bottom" data-tip="Collapse sidebar">
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            className="btn btn-sm btn-circle btn-ghost"
+            aria-label="Collapse sidebar"
+            aria-expanded={!isCollapsed}
+          >
+            <XIcon className="w-4 h-4" aria-hidden="true" />
+          </button>
+        </div>
       </div>
       {!isCollapsed && <SidebarNav />}
       <div
@@ -47,16 +48,17 @@ export const Sidebar = () => {
       </div>
 
       {isCollapsed && (
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="fixed top-4 left-4 z-50 btn btn-sm btn-circle btn-ghost shadow-lg"
-          title="Expand sidebar"
-          aria-label="Expand sidebar"
-          aria-expanded={!isCollapsed}
-        >
-          <MenuIcon className="w-5 h-5" aria-hidden="true" />
-        </button>
+        <div className="tooltip tooltip-right fixed top-4 left-4 z-50" data-tip="Expand sidebar">
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            className="btn btn-sm btn-circle btn-ghost shadow-lg"
+            aria-label="Expand sidebar"
+            aria-expanded={!isCollapsed}
+          >
+            <MenuIcon className="w-5 h-5" aria-hidden="true" />
+          </button>
+        </div>
       )}
     </aside>
   );

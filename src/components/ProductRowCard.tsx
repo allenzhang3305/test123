@@ -385,37 +385,40 @@ const ProductRowCardComponent = ({
         <div className="flex items-center justify-between mb-2 gap-2">
           <span className="badge badge-primary badge-sm">#{originalIndex + 1}</span>
           <div className="flex items-center gap-2">
-            <button
-              onClick={handleSuggestPosition}
-              disabled={isSuggesting}
-              className="btn btn-xs btn-ghost p-0.5 w-8 h-8 text-primary"
-              title="Suggest positions with AI"
-              aria-label="Suggest positions with AI"
-            >
-              {isSuggesting ? (
-                <span className="loading loading-spinner loading-xs"></span>
-              ) : (
-                <SparklesIcon className="w-4 h-4" />
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={handleOpenMainEditModal}
-              className="btn btn-xs btn-ghost p-0.5 w-8 h-8"
-              title="Edit main product"
-              aria-label="Edit main product"
-            >
-              <Edit3Icon className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={handleOpenDeleteModal}
-              className="btn btn-xs btn-ghost p-0.5 w-8 h-8 text-error"
-              title="Delete main product"
-              aria-label="Delete main product"
-            >
-              <TrashIcon className="w-4 h-4" />
-            </button>
+            <div className="tooltip tooltip-bottom" data-tip="Suggest positions with AI">
+              <button
+                onClick={handleSuggestPosition}
+                disabled={isSuggesting}
+                className="btn btn-xs btn-ghost p-0.5 w-8 h-8 text-primary"
+                aria-label="Suggest positions with AI"
+              >
+                {isSuggesting ? (
+                  <span className="loading loading-spinner loading-xs"></span>
+                ) : (
+                  <SparklesIcon className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+            <div className="tooltip tooltip-bottom" data-tip="Edit main product">
+              <button
+                type="button"
+                onClick={handleOpenMainEditModal}
+                className="btn btn-xs btn-ghost p-0.5 w-8 h-8"
+                aria-label="Edit main product"
+              >
+                <Edit3Icon className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="tooltip tooltip-bottom" data-tip="Delete main product">
+              <button
+                type="button"
+                onClick={handleOpenDeleteModal}
+                className="btn btn-xs btn-ghost p-0.5 w-8 h-8 text-error"
+                aria-label="Delete main product"
+              >
+                <TrashIcon className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
         {allDisplayOptionsOff ? (
@@ -490,36 +493,39 @@ const ProductRowCardComponent = ({
                           No img
                         </div>
                       )}
-                      <button
-                        onClick={(e) => handleRemoveDotSku(dot.sku, e)}
-                        className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110 z-10"
-                        title="Remove SKU"
-                        aria-label="Remove SKU"
-                      >
-                        <XIcon className="w-3 h-3" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={(event) => handleOpenDotEditModal(dot, j, event)}
-                        className="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110 z-10"
-                        title="Edit SKU"
-                        aria-label="Edit SKU"
-                      >
-                        <Edit3Icon className="w-3 h-3" />
-                      </button>
+                      <div className="tooltip tooltip-top absolute -top-1.5 -right-1.5 z-10" data-tip="Remove SKU">
+                        <button
+                          onClick={(e) => handleRemoveDotSku(dot.sku, e)}
+                          className="w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
+                          aria-label="Remove SKU"
+                        >
+                          <XIcon className="w-3 h-3" />
+                        </button>
+                      </div>
+                      <div className="tooltip tooltip-top absolute -top-1.5 -left-1.5 z-10" data-tip="Edit SKU">
+                        <button
+                          type="button"
+                          onClick={(event) => handleOpenDotEditModal(dot, j, event)}
+                          className="w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
+                          aria-label="Edit SKU"
+                        >
+                          <Edit3Icon className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
                   );
                   })}
                 </>
               )}
-              <button
-                onClick={handleOpenAddSkuModal}
-                className="btn btn-sm btn-circle btn-ghost w-16 h-16 border-2 border-dashed border-base-content/30 hover:border-primary"
-                title="Add SKU"
-                aria-label="Add SKU"
-              >
-                <PlusIcon className="w-5 h-5" />
-              </button>
+              <div className="tooltip" data-tip="Add SKU">
+                <button
+                  onClick={handleOpenAddSkuModal}
+                  className="btn btn-sm btn-circle btn-ghost w-16 h-16 border-2 border-dashed border-base-content/30 hover:border-primary"
+                  aria-label="Add SKU"
+                >
+                  <PlusIcon className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -554,14 +560,15 @@ const ProductRowCardComponent = ({
             <div className="flex-1 w-1/2">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="text-xs font-semibold text-base-content/70">Dot Products:</h4>
-                <button
-                  onClick={handleOpenAddSkuModal}
-                  className="btn btn-xs btn-circle btn-ghost"
-                  title="Add SKU"
-                  aria-label="Add SKU"
-                >
-                  <PlusIcon className="w-4 h-4" />
-                </button>
+                <div className="tooltip" data-tip="Add SKU">
+                  <button
+                    onClick={handleOpenAddSkuModal}
+                    className="btn btn-xs btn-circle btn-ghost"
+                    aria-label="Add SKU"
+                  >
+                    <PlusIcon className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
               {visibleDotSkus.length > 0 ? (
                 <div>
@@ -624,23 +631,25 @@ const ProductRowCardComponent = ({
                               </p>
                             )}
                           </div>
-                          <button
-                            onClick={(e) => handleRemoveDotSku(dot.sku, e)}
-                            className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
-                            title="Remove SKU"
-                            aria-label="Remove SKU"
-                          >
-                            <XIcon className="w-3 h-3" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={(event) => handleOpenDotEditModal(dot, j, event)}
-                            className="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
-                            title="Edit SKU"
-                            aria-label="Edit SKU"
-                          >
-                            <Edit3Icon className="w-3 h-3" />
-                          </button>
+                          <div className="tooltip tooltip-top absolute top-1.5 right-1.5" data-tip="Remove SKU">
+                            <button
+                              onClick={(e) => handleRemoveDotSku(dot.sku, e)}
+                              className="w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
+                              aria-label="Remove SKU"
+                            >
+                              <XIcon className="w-3 h-3" />
+                            </button>
+                          </div>
+                          <div className="tooltip tooltip-top absolute top-1.5 left-1.5" data-tip="Edit SKU">
+                            <button
+                              type="button"
+                              onClick={(event) => handleOpenDotEditModal(dot, j, event)}
+                              className="w-5 h-5 rounded-full bg-base-100 border border-base-content/30 text-base-content/60 flex items-center justify-center hover:bg-base-200 hover:text-base-content hover:border-base-content/50 transition-all duration-200 hover:scale-110"
+                              aria-label="Edit SKU"
+                            >
+                              <Edit3Icon className="w-3 h-3" />
+                            </button>
+                          </div>
                         </div>
                       );
                     })}
