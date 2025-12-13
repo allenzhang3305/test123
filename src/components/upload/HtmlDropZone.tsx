@@ -1,5 +1,5 @@
 import { FileCode as FileCodeIcon, Upload as UploadIcon } from "lucide-react";
-import { useHtmlUpload } from "@/hooks/useHtmlUpload";
+import { useFileUpload } from "@/hooks/useFileUpload";
 
 export const HtmlDropZone = () => {
   const {
@@ -9,7 +9,7 @@ export const HtmlDropZone = () => {
     handleDrop,
     handleFilePick,
     prevent,
-  } = useHtmlUpload();
+  } = useFileUpload();
 
   return (
     <div

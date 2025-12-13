@@ -2,8 +2,8 @@
 
 import { useState, useCallback } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { SortButton } from "@/components/SortButton";
-import { ProductRowCard } from "@/components/ProductRowCard";
+import { SortButton } from "@/components/ui/SortButton";
+import { ProductRowCard } from "@/components/product/ProductRowCard";
 import type { Row } from "@/types";
 
 interface RowWithIndex {

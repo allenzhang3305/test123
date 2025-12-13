@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Wand2 as Wand2Icon, Image as ImageIcon, ImageOff as ImageOffIcon, Filter as FilterIcon } from "lucide-react";
 import { useRowsStore } from "@/stores/useRowsStore";
 import type { Dot } from "@/types";
-import { ImageCard } from "@/components/ImageCard";
+import { ImageCard } from "@/components/product/ImageCard";
 
 interface Result {
   url: string;

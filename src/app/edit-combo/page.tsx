@@ -3,11 +3,11 @@
 import { useCopyToClipboard } from "usehooks-ts";
 import toast from "react-hot-toast";
 import { X as XIcon, Plus as PlusIcon, Copy as CopyIcon, Undo as UndoIcon, Redo as RedoIcon, Download as DownloadIcon, Upload as UploadIcon, FileCode as FileCodeIcon, Sparkles as SparklesIcon, Eye as EyeIcon } from "lucide-react";
-import { CopyableCell } from "@/components/CopyableCell";
-import { ResizableTableContainer } from "@/components/ResizableTableContainer";
-import { CsvDropZone } from "@/components/CsvDropZone";
-import { HtmlDropZone } from "@/components/HtmlDropZone";
-import { VisualizationSection } from "@/components/VisualizationSection";
+import { CopyableCell } from "@/components/ui/CopyableCell";
+import { ResizableTableContainer } from "@/components/ui/ResizableTableContainer";
+import { CsvDropZone } from "@/components/upload/CsvDropZone";
+import { HtmlDropZone } from "@/components/upload/HtmlDropZone";
+import { VisualizationSection } from "@/components/product/VisualizationSection";
 import { useRowsStore } from "@/stores/useRowsStore";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useSidebar } from "@/lib/client/context/sidebar-context";

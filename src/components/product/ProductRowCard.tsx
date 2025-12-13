@@ -4,7 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import { Plus as PlusIcon, X as XIcon, Edit3 as Edit3Icon, Trash2 as TrashIcon, Sparkles as SparklesIcon } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { ProductImageWithDots } from "@/components/ProductImageWithDots";
+import { ProductImageWithDots } from "@/components/product/ProductImageWithDots";
 import { useConfig } from "@/lib/client/context/config-context";
 import { suggestPositionsForProduct } from "@/lib/client/ai-utils";
 import type { DotSku, Row } from "@/types";

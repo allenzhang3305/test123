@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { FileSpreadsheet as FileSpreadsheetIcon } from "lucide-react";
 import { useCopyToClipboard } from "usehooks-ts";
 import toast from "react-hot-toast";
-import { CopyableCell } from "@/components/CopyableCell";
+import { CopyableCell } from "@/components/ui/CopyableCell";
 import type { Row } from "@/types";
 
 export function ProcessSidebar({

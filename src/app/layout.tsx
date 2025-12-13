@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "@/lib/globals.css";
 import Providers from "./providers";
-import { Sidebar } from "@/components/Sidebar";
-import { MainContent } from "@/components/MainContent";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { MainContent } from "@/components/layout/MainContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

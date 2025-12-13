@@ -25,7 +25,7 @@ import { SortableContext, verticalListSortingStrategy, arrayMove, sortableKeyboa
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CrossSellItem } from "@/types";
 import { useCrosssell } from "@/lib/client/context/crosssell-context";
-import { SortableCrossSellRow } from "@/components/SortableCrossSellRow";
+import { SortableCrossSellRow } from "@/components/crosssell/SortableCrossSellRow";
 
 // Helper to read a file as text
 const readFileAsText = (file: File): Promise<string> => {
