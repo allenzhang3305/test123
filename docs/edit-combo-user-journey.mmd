@@ -1,0 +1,111 @@
+%% ============================================================
+%% 編輯組合 - 使用者旅程圖
+%% Edit Combo - User Journey Diagram
+%% ============================================================
+flowchart LR
+    %% ============================================================
+    %% 入口
+    %% ============================================================
+    Start([首頁]) --> EditPage[編輯組合頁面]
+
+    %% ============================================================
+    %% 資料輸入方式
+    %% ============================================================
+    subgraph Input["資料輸入"]
+        direction TB
+        CSV[/CSV 檔案上傳/]
+        JSHTML[/JS/HTML 檔案上傳/]
+        TextImport[/文字匯入/]
+        GSheetPull[/Google Sheets 拉取/]
+    end
+
+    EditPage --> Input
+
+    %% ============================================================
+    %% 資料處理
+    %% ============================================================
+    subgraph Process["資料處理"]
+        direction TB
+        Parse[解析檔案內容]
+        FetchAPI[從 API 取得商品資訊]
+        LoadData[載入至資料表]
+    end
+
+    CSV --> Parse
+    JSHTML --> Parse
+    TextImport --> Parse
+    GSheetPull --> FetchAPI
+    Parse --> FetchAPI
+    FetchAPI --> LoadData
+
+    %% ============================================================
+    %% 編輯操作
+    %% ============================================================
+    subgraph Edit["編輯操作"]
+        direction TB
+        ViewTable[檢視資料表]
+        AddMain[新增主商品]
+        EditRow[編輯列資料]
+        AddDot[新增白點商品]
+        DeleteRow[刪除列]
+        UndoRedo[復原/重做]
+    end
+
+    LoadData --> ViewTable
+    ViewTable --> AddMain
+    ViewTable --> EditRow
+    ViewTable --> AddDot
+    ViewTable --> DeleteRow
+    ViewTable --> UndoRedo
+
+    %% ============================================================
+    %% AI 輔助功能
+    %% ============================================================
+    subgraph AI["AI 輔助"]
+        direction TB
+        AISuggest[AI 位置建議]
+        FetchImages[取得商品圖片]
+        ApplyPos[套用建議位置]
+    end
+
+    EditRow --> AISuggest
+    AISuggest --> FetchImages
+    FetchImages --> ApplyPos
+    ApplyPos --> ViewTable
+
+    %% ============================================================
+    %% 資料匯出方式
+    %% ============================================================
+    subgraph Export["資料匯出"]
+        direction TB
+        ExportCSV[\CSV 匯出\]
+        ExportHTML[\HTML/JS 匯出\]
+        GSheetPush[\Google Sheets 更新\]
+    end
+
+    ViewTable --> Export
+
+    %% ============================================================
+    %% 輸出結果
+    %% ============================================================
+    ExportCSV --> FileCSV([CSV 檔案])
+    ExportHTML --> FileHTML([HTML/JS 檔案])
+    GSheetPush --> GSheet([Google Sheets])
+
+    %% ============================================================
+    %% 樣式定義
+    %% ============================================================
+    classDef primary fill:#4a90d9,stroke:#2c5282,color:#fff
+    classDef input fill:#48bb78,stroke:#276749,color:#fff
+    classDef output fill:#ed8936,stroke:#c05621,color:#fff
+    classDef process fill:#667eea,stroke:#434190,color:#fff
+    classDef ai fill:#805ad5,stroke:#553c9a,color:#fff
+    classDef terminal fill:#38b2ac,stroke:#285e61,color:#fff
+
+    class Start,EditPage terminal
+    class CSV,JSHTML,TextImport,GSheetPull input
+    class Parse,FetchAPI,LoadData process
+    class ViewTable,AddMain,EditRow,AddDot,DeleteRow,UndoRedo primary
+    class AISuggest,FetchImages,ApplyPos ai
+    class ExportCSV,ExportHTML,GSheetPush output
+    class FileCSV,FileHTML,GSheet terminal

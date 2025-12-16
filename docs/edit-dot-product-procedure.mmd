@@ -1,0 +1,156 @@
+%% ============================================================
+%% 編輯白點商品流程圖
+%% Edit Dot Product Procedure Diagram
+%% ============================================================
+flowchart LR
+    %% ============================================================
+    %% 進入點
+    %% ============================================================
+    Start([檢視商品卡片]) --> Actions{選擇操作}
+
+    %% ============================================================
+    %% 新增白點商品
+    %% ============================================================
+    subgraph Add["新增白點商品"]
+        direction TB
+        ClickAdd[點擊 + 按鈕]
+        OpenModal[開啟 Modal]
+        InputSku[輸入 SKU]
+        CheckDup{SKU 是否重複?}
+        AddToList[新增至 dot_skus]
+        CloseModal[關閉 Modal]
+        
+        ClickAdd --> OpenModal
+        OpenModal --> InputSku
+        InputSku --> CheckDup
+        CheckDup -->|是| InputSku
+        CheckDup -->|否| AddToList
+        AddToList --> CloseModal
+    end
+
+    Actions -->|新增| ClickAdd
+
+    %% ============================================================
+    %% 編輯白點商品
+    %% ============================================================
+    subgraph Edit["編輯白點商品"]
+        direction TB
+        ClickEdit[點擊編輯按鈕]
+        OpenEditModal[開啟編輯 Modal]
+        EditFields["編輯欄位:<br/>• SKU<br/>• Top 位置<br/>• Left 位置"]
+        SaveEdit[儲存變更]
+        CloseEditModal[關閉 Modal]
+        
+        ClickEdit --> OpenEditModal
+        OpenEditModal --> EditFields
+        EditFields --> SaveEdit
+        SaveEdit --> CloseEditModal
+    end
+
+    Actions -->|編輯| ClickEdit
+
+    %% ============================================================
+    %% 設定位置（圖片點擊）
+    %% ============================================================
+    subgraph Position["設定位置"]
+        direction TB
+        ClickDotItem[點擊白點商品項目]
+        EnterPlacement[進入定位模式]
+        ClickImage[點擊主商品圖片]
+        CalcPos[計算點擊位置百分比]
+        UpdatePos[更新 top/left 值]
+        ExitPlacement[退出定位模式]
+        
+        ClickDotItem --> EnterPlacement
+        EnterPlacement --> ClickImage
+        ClickImage --> CalcPos
+        CalcPos --> UpdatePos
+        UpdatePos --> ExitPlacement
+    end
+
+    Actions -->|設定位置| ClickDotItem
+
+    %% ============================================================
+    %% 拖曳位置
+    %% ============================================================
+    subgraph Drag["拖曳調整位置"]
+        direction TB
+        DragDot[拖曳圖片上的白點]
+        CalcNewPos[計算新位置]
+        UpdateDotPos[更新位置資料]
+        
+        DragDot --> CalcNewPos
+        CalcNewPos --> UpdateDotPos
+    end
+
+    Actions -->|拖曳| DragDot
+
+    %% ============================================================
+    %% AI 建議位置
+    %% ============================================================
+    subgraph AI["AI 建議位置"]
+        direction TB
+        ClickAI[點擊 AI 按鈕]
+        CheckImg{有主商品圖片?}
+        CheckDotImg{有白點商品圖片?}
+        CallAPI[呼叫 AI API]
+        AnalyzePos[分析建議位置]
+        ApplyAll[套用所有建議位置]
+        ShowError[顯示錯誤訊息]
+        
+        ClickAI --> CheckImg
+        CheckImg -->|否| ShowError
+        CheckImg -->|是| CheckDotImg
+        CheckDotImg -->|否| ShowError
+        CheckDotImg -->|是| CallAPI
+        CallAPI --> AnalyzePos
+        AnalyzePos --> ApplyAll
+    end
+
+    Actions -->|AI 建議| ClickAI
+
+    %% ============================================================
+    %% 移除白點商品
+    %% ============================================================
+    subgraph Remove["移除白點商品"]
+        direction TB
+        ClickRemove[點擊 X 按鈕]
+        FilterOut[從 dot_skus 移除]
+        
+        ClickRemove --> FilterOut
+    end
+
+    Actions -->|移除| ClickRemove
+
+    %% ============================================================
+    %% 共同結束點
+    %% ============================================================
+    CloseModal --> UpdateStore
+    CloseEditModal --> UpdateStore
+    ExitPlacement --> UpdateStore
+    UpdateDotPos --> UpdateStore
+    ApplyAll --> UpdateStore
+    FilterOut --> UpdateStore
+
+    UpdateStore[["更新 useRowsStore"]] --> End([完成])
+
+    %% ============================================================
+    %% 樣式定義
+    %% ============================================================
+    classDef terminal fill:#38b2ac,stroke:#285e61,color:#fff
+    classDef action fill:#4a90d9,stroke:#2c5282,color:#fff
+    classDef decision fill:#ed8936,stroke:#c05621,color:#fff
+    classDef ai fill:#805ad5,stroke:#553c9a,color:#fff
+    classDef store fill:#48bb78,stroke:#276749,color:#fff
+    classDef error fill:#fc8181,stroke:#c53030,color:#fff
+
+    class Start,End terminal
+    class ClickAdd,OpenModal,InputSku,AddToList,CloseModal action
+    class ClickEdit,OpenEditModal,EditFields,SaveEdit,CloseEditModal action
+    class ClickDotItem,EnterPlacement,ClickImage,CalcPos,UpdatePos,ExitPlacement action
+    class DragDot,CalcNewPos,UpdateDotPos action
+    class ClickRemove,FilterOut action
+    class ClickAI,CallAPI,AnalyzePos,ApplyAll ai
+    class CheckDup,CheckImg,CheckDotImg,Actions decision
+    class UpdateStore store
+    class ShowError error
