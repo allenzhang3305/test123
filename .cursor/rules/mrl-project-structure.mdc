@@ -1,0 +1,84 @@
+---
+description: MRL Product Combo Manager - Project directory structure guide
+globs: **/*.ts,**/*.tsx
+alwaysApply: true
+---
+# MRL Product Combo Manager Structure
+
+## Component Domains
+```
+src/components/
+├── ui/           # Reusable primitives
+│   ├── CopyableCell.tsx
+│   ├── SortButton.tsx
+│   ├── ResizableTableContainer.tsx
+│   └── ScrapeHero.tsx
+├── upload/       # File upload components
+│   ├── CsvDropZone.tsx
+│   └── HtmlDropZone.tsx
+├── product/      # Product display/editing
+│   ├── ProductRowCard/    # Folder for complex component
+│   ├── ProductRowCard.tsx
+│   ├── ProductImageWithDots.tsx
+│   ├── VisualizationSection.tsx
+│   └── ImageCard.tsx
+├── layout/       # App layout
+│   ├── Sidebar.tsx
+│   ├── SidebarNav.tsx
+│   ├── MainContent.tsx
+│   └── ProcessSidebar.tsx
+└── crosssell/    # Crosssell feature
+    └── SortableCrossSellRow.tsx
+```
+
+## Page Structure (App Router)
+```
+src/app/
+├── edit-combo/
+│   ├── page.tsx           # Main page (~150 lines)
+│   ├── _components/       # Page-specific components
+│   │   ├── AddMainProductModal.tsx
+│   │   ├── ImportDataModal.tsx
+│   │   ├── UpdateSheetModal.tsx
+│   │   └── index.ts
+│   └── _hooks/
+│       └── useEditComboPage.ts
+├── crosssell/
+│   ├── page.tsx
+│   ├── settings/page.tsx
+│   └── _hooks/
+│       └── useCrosssellPage.ts
+├── view-production/page.tsx
+├── settings/page.tsx
+└── api/                   # API routes
+    ├── products/
+    ├── upload/
+    └── crosssell/
+```
+
+## Library Structure
+```
+src/lib/
+├── client/               # Client-side only
+│   ├── services/         # API calls, external integrations
+│   │   ├── product-service.ts
+│   │   ├── csv-export-service.ts
+│   │   ├── html-export-service.ts
+│   │   ├── google-sheets-service.ts
+│   │   └── import-service.ts
+│   ├── utils/            # Pure functions, parsers
+│   │   └── js-parser.ts
+│   ├── context/          # React contexts
+│   └── hooks/            # Shared hooks
+├── server/               # Server-side only
+└── shared/               # Both client & server
+    └── utils/
+```
+
+## Rules
+1. **New component**: Add to existing domain folder if related
+2. **New feature**: Create new domain folder
+3. **Each domain**: MUST have `index.ts` barrel export
+4. **Page > 200 lines**: Extract to `_hooks/`
+5. **Component > 300 lines**: Split into sub-components
+6. **Function used 2+ places**: Move to services/utils
