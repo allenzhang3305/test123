@@ -6,7 +6,7 @@ substitutions:
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - build
+      - 'build'
       - '--build-arg'
       - 'NEXT_PUBLIC_BASE_URL=${_NEXT_PUBLIC_BASE_URL}'
       - '--build-arg'
