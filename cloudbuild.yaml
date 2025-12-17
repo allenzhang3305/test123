@@ -1,21 +1,26 @@
+steps:
+  # Build Docker Image 並傳入 Next.js 需要的環境變數
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'asia-east1-docker.pkg.dev/czechrepublic-290206/dev-webapp/test123-image:latest'
+      - '-t'
+      - 'asia-east1-docker.pkg.dev/czechrepublic-290206/dev-webapp/test123-image:$COMMIT_SHA'
+      - '--build-arg'
+      - 'NEXT_PUBLIC_BASE_URL=$_NEXT_PUBLIC_BASE_URL'
+      - '--build-arg'
+      - 'NEXT_PUBLIC_MEDIA_URL=$_NEXT_PUBLIC_MEDIA_URL'
+      - '--build-arg'
+      - 'END_POINT=$_END_POINT'
+      - '.'
+
+# 推送映像檔到 Artifact Registry
+images:
+  - 'asia-east1-docker.pkg.dev/czechrepublic-290206/dev-webapp/test123-image:latest'
+  - 'asia-east1-docker.pkg.dev/czechrepublic-290206/dev-webapp/test123-image:$COMMIT_SHA'
+
 substitutions:
   _NEXT_PUBLIC_BASE_URL: 'http://dev-pcm.mrl.com.tw'
   _NEXT_PUBLIC_MEDIA_URL: 'http://dev-pcm.mrl.com.tw'
   _END_POINT: 'https://dev-pcm.mrl.com.tw/api'
-
-steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_BASE_URL=${_NEXT_PUBLIC_BASE_URL}'
-      - '--build-arg'
-      - 'NEXT_PUBLIC_MEDIA_URL=${_NEXT_PUBLIC_MEDIA_URL}'
-      - '--build-arg'
-      - 'END_POINT=${_END_POINT}'
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/test123-image:latest'
-      - '.'
-
-images:
-  - 'gcr.io/$PROJECT_ID/test123-image:latest'
