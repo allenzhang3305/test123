@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - '--build-arg'
+      - 'NEXT_PUBLIC_BASE_URL=https://dev-pcm.mrl.com.tw'
+      - '--build-arg'
+      - 'NEXT_PUBLIC_MEDIA_URL=https://dev-pcm.mrl.com.tw'  # 如果媒體資源也是同域名
+      - '--build-arg'
+      - 'END_POINT=https://dev-pcm.mrl.com.tw/api'          # 替換成你 API 端點
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/test123-image:latest'
+      - '.'
+images:
+  - 'gcr.io/$PROJECT_ID/test123-image:latest'
