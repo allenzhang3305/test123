@@ -1,6 +1,6 @@
 substitutions:
-  _NEXT_PUBLIC_BASE_URL: 'https://dev-pcm.mrl.com.tw'
-  _NEXT_PUBLIC_MEDIA_URL: 'https://dev-pcm.mrl.com.tw'
+  _NEXT_PUBLIC_BASE_URL: 'http://dev-pcm.mrl.com.tw'
+  _NEXT_PUBLIC_MEDIA_URL: 'http://dev-pcm.mrl.com.tw'
   _END_POINT: 'https://dev-pcm.mrl.com.tw/api'
 
 steps:
